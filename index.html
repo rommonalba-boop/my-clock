@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>My Clock</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000000;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    #clockScreen {
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #clockContainer {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #time {
+      font-size: clamp(5rem, 22vw, 16rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      white-space: nowrap;
+    }
+
+    #seconds {
+      font-size: 0.35em;
+      margin-left: 0.12em;
+      opacity: 0.8;
+      letter-spacing: normal;
+    }
+
+    #date {
+      margin-top: 28px;
+      font-size: clamp(1rem, 3vw, 2rem);
+      font-weight: 400;
+      opacity: 0.75;
+      text-transform: capitalize;
+    }
+
+    #settingsButton {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    #settings {
+      position: fixed;
+      right: 20px;
+      bottom: 85px;
+      width: 280px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(30,30,30,0.92);
+      backdrop-filter: blur(20px);
+      display: none;
+    }
+
+    #settings.open {
+      display: block;
+    }
+
+    .setting {
+      margin-bottom: 18px;
+    }
+
+    .setting:last-child {
+      margin-bottom: 0;
+    }
+
+    .setting label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    input[type="color"] {
+      width: 45px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (orientation: landscape) {
+      #time {
+        font-size: clamp(5rem, 25vh, 14rem);
+      }
+
+      #date {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main id="clockScreen">
+
+    <div id="clockContainer">
+      <div id="time">
+        <span id="hoursMinutes">00:00</span><span id="seconds">00</span>
+      </div>
+
+      <div id="date"></div>
+    </div>
+
+  </main>
+
+  <button id="settingsButton">⚙</button>
+
+  <div id="settings">
+
+    <div class="setting">
+      <label>
+        Mostrar segundos
+        <input type="checkbox" id="showSeconds" checked>
+      </label>
+    </div>
+
+    <div class="setting">
+      <label>
+        Mostrar fecha
+        <input type="checkbox" id="showDate" checked>
+      </label>
+    </div>
+
+    <div class="setting">
+      <label>
+        Color del reloj
+        <input type="color" id="clockColor" value="#ffffff">
+      </label>
+    </div>
+
+    <div class="setting">
+      <label>
+        Color del fondo
+        <input type="color" id="backgroundColor" value="#000000">
+      </label>
+    </div>
+
+  </div>
+
+  <script>
+
+    const hoursMinutes = document.getElementById("hoursMinutes");
+    const seconds = document.getElementById("seconds");
+    const dateElement = document.getElementById("date");
+
+    const settingsButton = document.getElementById("settingsButton");
+    const settings = document.getElementById("settings");
+
+    const showSeconds = document.getElementById("showSeconds");
+    const showDate = document.getElementById("showDate");
+
+    const clockColor = document.getElementById("clockColor");
+    const backgroundColor = document.getElementById("backgroundColor");
+
+
+    function updateClock() {
+
+      const now = new Date();
+
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const secs = String(now.getSeconds()).padStart(2, "0");
+
+      hoursMinutes.textContent = `${hours}:${minutes}`;
+      seconds.textContent = secs;
+
+      const date = new Intl.DateTimeFormat("es-ES", {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+      }).format(now);
+
+      dateElement.textContent = date;
+    }
+
+
+    settingsButton.addEventListener("click", () => {
+      settings.classList.toggle("open");
+    });
+
+
+    showSeconds.addEventListener("change", () => {
+      seconds.style.display =
+        showSeconds.checked ? "inline" : "none";
+    });
+
+
+    showDate.addEventListener("change", () => {
+      dateElement.style.display =
+        showDate.checked ? "block" : "none";
+    });
+
+
+    clockColor.addEventListener("input", () => {
+      document.body.style.color = clockColor.value;
+    });
+
+
+    backgroundColor.addEventListener("input", () => {
+      document.body.style.background = backgroundColor.value;
+    });
+
+
+    updateClock();
+
+    setInterval(updateClock, 1000);
+
+  </script>
+
+</body>
+</html>
