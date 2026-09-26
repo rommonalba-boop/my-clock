@@ -12,48 +12,39 @@
 :root{
   --text:#ffffff;
   --bg:#000000;
-  --panel:rgba(25,25,25,.82);
-  --soft:rgba(255,255,255,.12);
+  --panel:rgba(22,22,22,.94);
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 html,body{
   margin:0;
   width:100%;
   height:100%;
   overflow:hidden;
-  background:var(--bg);
-  color:var(--text);
+  background:#000;
+  color:#fff;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,input,select{
-  font:inherit;
-}
+button,input,select{font:inherit}
+
+button{cursor:pointer}
 
 #app{
   width:100%;
   height:100dvh;
   position:relative;
-  background-color:var(--bg);
-  background-position:center;
-  background-size:cover;
-  background-repeat:no-repeat;
+  background:#000 center/cover no-repeat;
   overflow:hidden;
 }
 
 #overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0);
   pointer-events:none;
+  z-index:1;
 }
-
-/* ---------- PANTALLAS ---------- */
 
 .screen{
   position:absolute;
@@ -65,56 +56,58 @@ button,input,select{
   z-index:2;
 }
 
-.screen.active{
-  display:flex;
-}
+.screen.active{display:flex}
 
-/* ---------- RELOJ ---------- */
+/* RELOJ */
 
-#clockWrap{
-  text-align:center;
-  width:100%;
-}
+#clockWrap{text-align:center;width:100%}
 
 #clock{
   font-size:clamp(5rem,21vw,17rem);
   font-weight:300;
-  line-height:.9;
-  letter-spacing:-.06em;
+  line-height:.95;
+  letter-spacing:-.045em;
   white-space:nowrap;
 }
 
 #clockSeconds{
-  font-size:.28em;
-  opacity:.75;
-  margin-left:.12em;
+  font-size:.29em;
+  opacity:.72;
+  margin-left:.15em;
   letter-spacing:0;
 }
 
 #date{
-  margin-top:30px;
+  margin-top:28px;
   font-size:clamp(1rem,3vw,2rem);
-  opacity:.8;
+  opacity:.78;
   text-transform:capitalize;
 }
 
-/* ---------- TIMER / FOCUS ---------- */
-
-.bigTimer{
-  font-size:clamp(5rem,22vw,16rem);
-  font-weight:300;
-  letter-spacing:-.06em;
-  line-height:1;
-}
+/* TIMER Y FOCUS */
 
 .timerArea{
   text-align:center;
+  width:100%;
 }
 
 .timerTitle{
   font-size:clamp(1rem,3vw,1.7rem);
   margin-bottom:22px;
-  opacity:.75;
+  opacity:.72;
+}
+
+.bigTimer{
+  font-size:clamp(5rem,20vw,15rem);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-.025em;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+.noSeconds{
+  font-size:clamp(4.5rem,18vw,13rem);
 }
 
 .timerButtons{
@@ -132,15 +125,14 @@ button,input,select{
   background:rgba(255,255,255,.16);
   color:inherit;
   backdrop-filter:blur(15px);
-  cursor:pointer;
 }
 
 .mainButton.primary{
-  background:white;
-  color:black;
+  background:#fff;
+  color:#000;
 }
 
-/* ---------- NAVEGACIÓN ---------- */
+/* NAV */
 
 #nav{
   position:fixed;
@@ -160,11 +152,10 @@ button,input,select{
 .navButton{
   border:0;
   background:transparent;
-  color:white;
+  color:#fff;
   opacity:.55;
   padding:10px 15px;
   border-radius:100px;
-  cursor:pointer;
 }
 
 .navButton.active{
@@ -172,7 +163,7 @@ button,input,select{
   background:rgba(255,255,255,.15);
 }
 
-/* ---------- BOTÓN AJUSTES ---------- */
+/* AJUSTES */
 
 #settingsButton{
   position:fixed;
@@ -183,14 +174,11 @@ button,input,select{
   border:0;
   border-radius:50%;
   background:rgba(30,30,30,.6);
-  color:white;
+  color:#fff;
   font-size:20px;
   backdrop-filter:blur(20px);
   z-index:30;
-  cursor:pointer;
 }
-
-/* ---------- PANEL ---------- */
 
 #settingsPanel{
   position:fixed;
@@ -198,40 +186,34 @@ button,input,select{
   top:0;
   right:0;
   height:100%;
-  width:min(390px,100%);
-  background:rgba(20,20,20,.94);
+  width:min(400px,100%);
+  background:var(--panel);
   backdrop-filter:blur(30px);
   transform:translateX(105%);
   transition:.28s ease;
   overflow-y:auto;
-  padding:
-    max(25px,env(safe-area-inset-top))
-    22px
-    max(35px,env(safe-area-inset-bottom));
-  color:white;
+  padding:max(25px,env(safe-area-inset-top)) 22px
+          max(35px,env(safe-area-inset-bottom));
+  color:#fff;
 }
 
-#settingsPanel.open{
-  transform:translateX(0);
-}
+#settingsPanel.open{transform:translateX(0)}
 
 .panelHeader{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
-.panelHeader h2{
-  margin:0;
-}
+.panelHeader h2{margin:0}
 
 .closeButton{
   border:0;
   width:38px;
   height:38px;
   border-radius:50%;
-  color:white;
+  color:#fff;
   background:rgba(255,255,255,.12);
   font-size:20px;
 }
@@ -241,13 +223,9 @@ button,input,select{
   border-top:1px solid rgba(255,255,255,.12);
 }
 
-.section:first-of-type{
-  border-top:0;
-}
-
 .sectionTitle{
-  font-weight:600;
-  margin-bottom:16px;
+  font-weight:650;
+  margin-bottom:15px;
 }
 
 .row{
@@ -258,16 +236,22 @@ button,input,select{
   margin:14px 0;
 }
 
-.row label{
-  font-size:14px;
+.row label{font-size:14px}
+
+.subtext{
+  font-size:12px;
+  opacity:.55;
+  line-height:1.4;
+  margin-top:-7px;
+  margin-bottom:12px;
 }
 
-input[type="checkbox"]{
+input[type=checkbox]{
   width:20px;
   height:20px;
 }
 
-input[type="color"]{
+input[type=color]{
   width:48px;
   height:34px;
   padding:0;
@@ -275,24 +259,18 @@ input[type="color"]{
   background:transparent;
 }
 
-select,
-.numberInput,
-.textInput{
+input[type=range]{width:145px}
+
+select,.numberInput,.textInput{
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.12);
-  color:white;
+  color:#fff;
   padding:9px 11px;
   border-radius:10px;
-  max-width:170px;
+  max-width:180px;
 }
 
-select option{
-  color:black;
-}
-
-input[type="range"]{
-  width:145px;
-}
+select option{color:#000}
 
 .uploadButton{
   display:block;
@@ -304,9 +282,7 @@ input[type="range"]{
   font-size:14px;
 }
 
-#backgroundImage{
-  display:none;
-}
+#backgroundImage{display:none}
 
 .fullButton{
   width:100%;
@@ -315,13 +291,12 @@ input[type="range"]{
   border:0;
   border-radius:12px;
   background:rgba(255,255,255,.12);
-  color:white;
-  cursor:pointer;
+  color:#fff;
 }
 
 .fullButton.important{
-  background:white;
-  color:black;
+  background:#fff;
+  color:#000;
 }
 
 .preset{
@@ -330,24 +305,22 @@ input[type="range"]{
   margin-top:8px;
 }
 
-.preset button:first-child{
-  flex:1;
-}
+.preset button:first-child{flex:1}
 
 .smallDanger{
   width:42px;
   border:0;
   border-radius:12px;
-  color:white;
+  color:#fff;
   background:rgba(255,80,80,.25);
 }
 
-/* ---------- TIMER SETUP ---------- */
+/* MODALES */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.72);
   display:none;
   align-items:center;
   justify-content:center;
@@ -356,22 +329,19 @@ input[type="range"]{
   backdrop-filter:blur(10px);
 }
 
-.modal.open{
-  display:flex;
-}
+.modal.open{display:flex}
 
 .modalBox{
-  width:min(400px,100%);
+  width:min(410px,100%);
   max-height:90vh;
   overflow:auto;
   padding:25px;
   border-radius:25px;
   background:#1b1b1b;
+  color:#fff;
 }
 
-.modalBox h2{
-  margin-top:0;
-}
+.modalBox h2{margin-top:0}
 
 .timeInputs{
   display:flex;
@@ -381,21 +351,22 @@ input[type="range"]{
 .timeInputGroup{
   flex:1;
   text-align:center;
+  font-size:13px;
 }
 
 .timeInputGroup input{
   width:100%;
   margin-top:7px;
-  padding:12px;
+  padding:12px 5px;
   border:0;
   border-radius:12px;
   background:#303030;
-  color:white;
+  color:#fff;
   text-align:center;
   font-size:20px;
 }
 
-/* ---------- MODO LIMPIO ---------- */
+/* MODO LIMPIO */
 
 .cleanMode #nav,
 .cleanMode #settingsButton{
@@ -410,26 +381,13 @@ input[type="range"]{
   z-index:10;
 }
 
-.cleanMode #exitClean{
-  display:block;
+.cleanMode #exitClean{display:block}
+
+@media(orientation:landscape){
+  #clock{font-size:clamp(5rem,25vh,15rem)}
+  .bigTimer{font-size:clamp(5rem,27vh,15rem)}
+  #date{margin-top:18px}
 }
-
-/* ---------- RESPONSIVE ---------- */
-
-@media (orientation:landscape){
-  #clock{
-    font-size:clamp(5rem,25vh,15rem);
-  }
-
-  .bigTimer{
-    font-size:clamp(5rem,27vh,15rem);
-  }
-
-  #date{
-    margin-top:20px;
-  }
-}
-
 </style>
 </head>
 
@@ -437,55 +395,50 @@ input[type="range"]{
 
 <div id="app">
 
-  <div id="overlay"></div>
-  <div id="exitClean"></div>
+<div id="overlay"></div>
+<div id="exitClean"></div>
 
-  <!-- RELOJ -->
-  <section id="clockScreen" class="screen active">
-    <div id="clockWrap">
-      <div id="clock">
-        <span id="hoursMinutes">00:00</span><span id="clockSeconds">00</span>
-      </div>
-      <div id="date"></div>
+<section id="clockScreen" class="screen active">
+  <div id="clockWrap">
+    <div id="clock">
+      <span id="hoursMinutes">00:00</span><span id="clockSeconds">00</span>
     </div>
-  </section>
+    <div id="date"></div>
+  </div>
+</section>
 
-  <!-- TEMPORIZADOR -->
-  <section id="timerScreen" class="screen">
-    <div class="timerArea">
-      <div class="timerTitle">Temporizador</div>
-      <div id="timerDisplay" class="bigTimer">05:00</div>
+<section id="timerScreen" class="screen">
+  <div class="timerArea">
+    <div class="timerTitle">Temporizador</div>
+    <div id="timerDisplay" class="bigTimer">05:00</div>
 
-      <div class="timerButtons">
-        <button class="mainButton" onclick="openTimerSetup()">Cambiar</button>
-        <button id="timerStart" class="mainButton primary" onclick="toggleTimer()">Iniciar</button>
-        <button class="mainButton" onclick="resetTimer()">Reiniciar</button>
-      </div>
+    <div class="timerButtons">
+      <button class="mainButton" onclick="openTimerSetup()">Cambiar</button>
+      <button id="timerStart" class="mainButton primary" onclick="toggleTimer()">Iniciar</button>
+      <button class="mainButton" onclick="resetTimer()">Reiniciar</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOCUS -->
-  <section id="focusScreen" class="screen">
-    <div class="timerArea">
-      <div id="focusTitle" class="timerTitle">Concentración · Sesión 1</div>
-      <div id="focusDisplay" class="bigTimer">25:00</div>
+<section id="focusScreen" class="screen">
+  <div class="timerArea">
+    <div id="focusTitle" class="timerTitle">Concentración · Sesión 1/4</div>
+    <div id="focusDisplay" class="bigTimer">25:00</div>
 
-      <div class="timerButtons">
-        <button class="mainButton" onclick="openFocusSetup()">Configurar</button>
-        <button id="focusStart" class="mainButton primary" onclick="toggleFocus()">Iniciar</button>
-        <button class="mainButton" onclick="resetFocus()">Reiniciar</button>
-      </div>
+    <div class="timerButtons">
+      <button class="mainButton" onclick="openFocusSetup()">Configurar</button>
+      <button id="focusStart" class="mainButton primary" onclick="toggleFocus()">Iniciar</button>
+      <button class="mainButton" onclick="resetFocus()">Reiniciar</button>
     </div>
-  </section>
+  </div>
+</section>
 
 </div>
 
-<!-- NAVEGACIÓN -->
-
 <nav id="nav">
-  <button class="navButton active" data-screen="clockScreen">Reloj</button>
-  <button class="navButton" data-screen="timerScreen">Timer</button>
-  <button class="navButton" data-screen="focusScreen">Focus</button>
+<button class="navButton active" data-screen="clockScreen">Reloj</button>
+<button class="navButton" data-screen="timerScreen">Timer</button>
+<button class="navButton" data-screen="focusScreen">Focus</button>
 </nav>
 
 <button id="settingsButton">⚙</button>
@@ -494,683 +447,718 @@ input[type="range"]{
 
 <aside id="settingsPanel">
 
-  <div class="panelHeader">
-    <h2>Ajustes</h2>
-    <button id="closeSettings" class="closeButton">×</button>
-  </div>
+<div class="panelHeader">
+<h2>Ajustes</h2>
+<button id="closeSettings" class="closeButton">×</button>
+</div>
 
-  <div class="section">
+<div class="section">
 
-    <div class="sectionTitle">Reloj</div>
+<div class="sectionTitle">Reloj</div>
 
-    <div class="row">
-      <label>Mostrar segundos</label>
-      <input type="checkbox" id="showSeconds" checked>
-    </div>
+<div class="row">
+<label>Mostrar segundos</label>
+<input type="checkbox" id="showSeconds" checked>
+</div>
 
-    <div class="row">
-      <label>Mostrar fecha</label>
-      <input type="checkbox" id="showDate" checked>
-    </div>
+<div class="row">
+<label>Mostrar fecha</label>
+<input type="checkbox" id="showDate" checked>
+</div>
 
-    <div class="row">
-      <label>Formato</label>
-      <select id="timeFormat">
-        <option value="24">24 horas</option>
-        <option value="12">12 horas</option>
-      </select>
-    </div>
+<div class="row">
+<label>Formato</label>
+<select id="timeFormat">
+<option value="24">24 horas</option>
+<option value="12">12 horas</option>
+</select>
+</div>
 
-    <div class="row">
-      <label>Tipografía</label>
-      <select id="fontFamily">
-        <option value="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Apple / Modern</option>
-        <option value="Arial,sans-serif">Arial</option>
-        <option value="Georgia,serif">Georgia</option>
-        <option value="'Courier New',monospace">Digital Mono</option>
-        <option value="Verdana,sans-serif">Verdana</option>
-        <option value="'Trebuchet MS',sans-serif">Trebuchet</option>
-        <option value="Impact,sans-serif">Impact</option>
-      </select>
-    </div>
+<div class="row">
+<label>Tipografía</label>
+<select id="fontFamily">
+<option value="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Modern</option>
+<option value="'Arial',sans-serif">Arial</option>
+<option value="'Arial Black',sans-serif">Arial Black</option>
+<option value="Georgia,serif">Georgia</option>
+<option value="'Courier New',monospace">Mono</option>
+<option value="Verdana,sans-serif">Verdana</option>
+<option value="'Trebuchet MS',sans-serif">Trebuchet</option>
+<option value="Impact,sans-serif">Impact</option>
+</select>
+</div>
 
-    <div class="row">
-      <label>Grosor</label>
-      <select id="fontWeight">
-        <option value="200">Muy fino</option>
-        <option value="300" selected>Fino</option>
-        <option value="400">Normal</option>
-        <option value="500">Medio</option>
-        <option value="600">Grueso</option>
-        <option value="700">Muy grueso</option>
-      </select>
-    </div>
+<div class="row">
+<label>Grosor</label>
+<select id="fontWeight">
+<option value="300">Fino</option>
+<option value="400">Normal</option>
+<option value="700">Grueso</option>
+<option value="900">Extra grueso</option>
+</select>
+</div>
 
-    <div class="row">
-      <label>Tamaño</label>
-      <input type="range" id="clockSize" min="70" max="130" value="100">
-    </div>
+<div class="subtext">
+Algunas tipografías solo admiten determinados grosores.
+</div>
 
-  </div>
-
-  <div class="section">
-
-    <div class="sectionTitle">Colores y fondo</div>
-
-    <div class="row">
-      <label>Color números</label>
-      <input type="color" id="textColor" value="#ffffff">
-    </div>
-
-    <div class="row">
-      <label>Color fondo</label>
-      <input type="color" id="backgroundColor" value="#000000">
-    </div>
-
-    <div class="row">
-      <label>Oscurecer imagen</label>
-      <input type="range" id="overlayOpacity" min="0" max="80" value="0">
-    </div>
-
-    <label class="uploadButton">
-      🖼 Elegir imagen de fondo
-      <input type="file" id="backgroundImage" accept="image/*">
-    </label>
-
-    <button class="fullButton" onclick="removeBackgroundImage()">
-      Quitar imagen
-    </button>
-
-  </div>
-
-  <div class="section">
-
-    <div class="sectionTitle">Pantalla</div>
-
-    <button class="fullButton" onclick="enterCleanMode()">
-      Ocultar controles
-    </button>
-
-    <button class="fullButton" onclick="requestFullscreen()">
-      Pantalla completa
-    </button>
-
-    <button class="fullButton" onclick="keepAwake()">
-      Mantener pantalla activa
-    </button>
-
-  </div>
-
-  <div class="section">
-
-    <div class="sectionTitle">Mis configuraciones</div>
-
-    <input
-      id="presetName"
-      class="textInput"
-      style="width:100%;max-width:none"
-      placeholder="Ej. Estudio, Noche, Rosa..."
-    >
-
-    <button class="fullButton important" onclick="savePreset()">
-      Guardar configuración
-    </button>
-
-    <div id="presetList"></div>
-
-  </div>
-
-</aside>
-
-<!-- MODAL TIMER -->
-
-<div id="timerModal" class="modal">
-
-  <div class="modalBox">
-
-    <h2>Temporizador</h2>
-
-    <div class="timeInputs">
-
-      <div class="timeInputGroup">
-        Horas
-        <input id="timerHours" type="number" min="0" max="99" value="0">
-      </div>
-
-      <div class="timeInputGroup">
-        Minutos
-        <input id="timerMinutes" type="number" min="0" max="59" value="5">
-      </div>
-
-      <div class="timeInputGroup">
-        Segundos
-        <input id="timerSecondsInput" type="number" min="0" max="59" value="0">
-      </div>
-
-    </div>
-
-    <button class="fullButton important" onclick="setTimer()">
-      Usar este tiempo
-    </button>
-
-    <button class="fullButton" onclick="closeTimerSetup()">
-      Cancelar
-    </button>
-
-  </div>
+<div class="row">
+<label>Tamaño</label>
+<input type="range" id="clockSize" min="70" max="130" value="100">
+</div>
 
 </div>
 
-<!-- MODAL FOCUS -->
+<div class="section">
+
+<div class="sectionTitle">Colores y fondo</div>
+
+<div class="row">
+<label>Color números</label>
+<input type="color" id="textColor" value="#ffffff">
+</div>
+
+<div class="row">
+<label>Color fondo</label>
+<input type="color" id="backgroundColor" value="#000000">
+</div>
+
+<div class="row">
+<label>Oscurecer imagen</label>
+<input type="range" id="overlayOpacity" min="0" max="80" value="0">
+</div>
+
+<label class="uploadButton">
+🖼 Elegir imagen de fondo
+<input type="file" id="backgroundImage" accept="image/*">
+</label>
+
+<button class="fullButton" onclick="removeBackgroundImage()">Quitar imagen</button>
+
+</div>
+
+<div class="section">
+
+<div class="sectionTitle">Sonido y avisos</div>
+
+<div class="row">
+<label>Sonido de alarma</label>
+<input type="checkbox" id="alarmEnabled" checked>
+</div>
+
+<div class="row">
+<label>Vibración</label>
+<input type="checkbox" id="vibrationEnabled" checked>
+</div>
+
+<div class="row">
+<label>Sonido</label>
+<select id="alarmSound">
+<option value="soft">Suave</option>
+<option value="digital">Digital</option>
+<option value="bell">Campana</option>
+<option value="beep">Beep</option>
+<option value="double">Doble beep</option>
+</select>
+</div>
+
+<button class="fullButton" onclick="testAlarm()">▶ Probar sonido</button>
+
+</div>
+
+<div class="section">
+
+<div class="sectionTitle">Pantalla</div>
+
+<button class="fullButton" onclick="enterCleanMode()">Ocultar controles</button>
+
+<button class="fullButton" onclick="keepAwake()">Mantener pantalla activa</button>
+
+<div class="subtext" style="margin-top:10px">
+En iPhone, la pantalla tipo aplicación se activará cuando instalemos My Clock en la pantalla de inicio.
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="sectionTitle">Mis configuraciones</div>
+
+<input id="presetName"
+class="textInput"
+style="width:100%;max-width:none"
+placeholder="Ej. Estudio, Noche, Rosa...">
+
+<button class="fullButton important" onclick="savePreset()">Guardar configuración</button>
+
+<div id="presetList"></div>
+
+</div>
+
+</aside>
+
+<!-- TIMER -->
+
+<div id="timerModal" class="modal">
+<div class="modalBox">
+
+<h2>Temporizador</h2>
+
+<div class="timeInputs">
+
+<div class="timeInputGroup">
+Horas
+<input id="timerHours" type="number" min="0" max="99" value="0">
+</div>
+
+<div class="timeInputGroup">
+Minutos
+<input id="timerMinutes" type="number" min="0" max="59" value="5">
+</div>
+
+<div class="timeInputGroup">
+Segundos
+<input id="timerSecondsInput" type="number" min="0" max="59" value="0">
+</div>
+
+</div>
+
+<div class="row">
+<label>Mostrar segundos</label>
+<input id="timerShowSeconds" type="checkbox" checked>
+</div>
+
+<button class="fullButton important" onclick="setTimer()">Usar este tiempo</button>
+<button class="fullButton" onclick="closeTimerSetup()">Cancelar</button>
+
+</div>
+</div>
+
+<!-- FOCUS -->
 
 <div id="focusModal" class="modal">
+<div class="modalBox">
 
-  <div class="modalBox">
+<h2>Focus</h2>
 
-    <h2>Focus</h2>
+<button class="fullButton" onclick="focusPreset(25,5,10)">
+Pomodoro · 25 / 5 / 10
+</button>
 
-    <button class="fullButton" onclick="focusPreset(25,5)">
-      Pomodoro 25 / 5
-    </button>
+<button class="fullButton" onclick="focusPreset(50,10,15)">
+Focus · 50 / 10 / 15
+</button>
 
-    <button class="fullButton" onclick="focusPreset(50,10)">
-      Focus 50 / 10
-    </button>
+<div class="section">
 
-    <div class="section">
+<div class="row">
+<label>Concentración</label>
+<input id="focusMinutes" class="numberInput" type="number" min="1" value="25">
+</div>
 
-      <div class="row">
-        <label>Concentración (min)</label>
-        <input id="focusMinutes" class="numberInput" type="number" min="1" value="25">
-      </div>
+<div class="row">
+<label>Descanso</label>
+<input id="breakMinutes" class="numberInput" type="number" min="1" value="5">
+</div>
 
-      <div class="row">
-        <label>Descanso (min)</label>
-        <input id="breakMinutes" class="numberInput" type="number" min="1" value="5">
-      </div>
+<div class="row">
+<label>Descanso largo</label>
+<input id="longBreakMinutes" class="numberInput" type="number" min="1" value="10">
+</div>
 
-      <div class="row">
-        <label>Descanso largo</label>
-        <input id="longBreakMinutes" class="numberInput" type="number" min="1" value="15">
-      </div>
+<div class="row">
+<label>Sesiones</label>
+<input id="focusSessions" class="numberInput" type="number" min="1" max="20" value="4">
+</div>
 
-      <div class="row">
-        <label>Sesiones</label>
-        <input id="focusSessions" class="numberInput" type="number" min="1" max="20" value="4">
-      </div>
+<div class="row">
+<label>Mostrar segundos</label>
+<input id="focusShowSeconds" type="checkbox" checked>
+</div>
 
-      <div class="row">
-        <label>Cambio automático</label>
-        <input id="autoFocus" type="checkbox">
-      </div>
+<div class="row">
+<label>Cambio automático</label>
+<input id="autoFocus" type="checkbox">
+</div>
 
-    </div>
+</div>
 
-    <button class="fullButton important" onclick="applyFocusSettings()">
-      Guardar
-    </button>
+<button class="fullButton important" onclick="applyFocusSettings()">Guardar</button>
+<button class="fullButton" onclick="closeFocusSetup()">Cancelar</button>
 
-    <button class="fullButton" onclick="closeFocusSetup()">
-      Cancelar
-    </button>
-
-  </div>
-
+</div>
 </div>
 
 <script>
 
-/* =========================
-   ELEMENTOS
-========================= */
+/* ELEMENTOS */
 
-const app = document.getElementById("app");
-const overlay = document.getElementById("overlay");
+const app=document.getElementById("app");
+const overlay=document.getElementById("overlay");
 
-const hoursMinutes = document.getElementById("hoursMinutes");
-const clockSeconds = document.getElementById("clockSeconds");
-const dateElement = document.getElementById("date");
-const clockElement = document.getElementById("clock");
+const hoursMinutes=document.getElementById("hoursMinutes");
+const clockSeconds=document.getElementById("clockSeconds");
+const dateElement=document.getElementById("date");
+const clockElement=document.getElementById("clock");
 
-const settingsPanel = document.getElementById("settingsPanel");
+const settingsPanel=document.getElementById("settingsPanel");
 
-const showSeconds = document.getElementById("showSeconds");
-const showDate = document.getElementById("showDate");
-const timeFormat = document.getElementById("timeFormat");
-const fontFamily = document.getElementById("fontFamily");
-const fontWeight = document.getElementById("fontWeight");
-const clockSize = document.getElementById("clockSize");
+const showSeconds=document.getElementById("showSeconds");
+const showDate=document.getElementById("showDate");
+const timeFormat=document.getElementById("timeFormat");
+const fontFamily=document.getElementById("fontFamily");
+const fontWeight=document.getElementById("fontWeight");
+const clockSize=document.getElementById("clockSize");
 
-const textColor = document.getElementById("textColor");
-const backgroundColor = document.getElementById("backgroundColor");
-const overlayOpacity = document.getElementById("overlayOpacity");
-const backgroundImage = document.getElementById("backgroundImage");
+const textColor=document.getElementById("textColor");
+const backgroundColor=document.getElementById("backgroundColor");
+const overlayOpacity=document.getElementById("overlayOpacity");
+const backgroundImage=document.getElementById("backgroundImage");
+
+const alarmEnabled=document.getElementById("alarmEnabled");
+const vibrationEnabled=document.getElementById("vibrationEnabled");
+const alarmSound=document.getElementById("alarmSound");
+
+const timerShowSeconds=document.getElementById("timerShowSeconds");
+const focusShowSeconds=document.getElementById("focusShowSeconds");
 
 
-/* =========================
-   RELOJ
-========================= */
+/* RELOJ */
 
 function updateClock(){
 
-  const now = new Date();
+const now=new Date();
 
-  let hours = now.getHours();
-  let suffix = "";
+let hours=now.getHours();
+let suffix="";
 
-  if(timeFormat.value === "12"){
-    suffix = hours >= 12 ? " PM" : " AM";
-    hours = hours % 12 || 12;
-  }
+if(timeFormat.value==="12"){
+suffix=hours>=12?" PM":" AM";
+hours=hours%12||12;
+}
 
-  const h = String(hours).padStart(2,"0");
-  const m = String(now.getMinutes()).padStart(2,"0");
-  const s = String(now.getSeconds()).padStart(2,"0");
+const h=String(hours).padStart(2,"0");
+const m=String(now.getMinutes()).padStart(2,"0");
+const s=String(now.getSeconds()).padStart(2,"0");
 
-  hoursMinutes.textContent = `${h}:${m}${suffix}`;
-  clockSeconds.textContent = s;
+hoursMinutes.textContent=`${h}:${m}${suffix}`;
+clockSeconds.textContent=s;
 
-  dateElement.textContent =
-    new Intl.DateTimeFormat("es-ES",{
-      weekday:"long",
-      day:"numeric",
-      month:"long"
-    }).format(now);
+dateElement.textContent=
+new Intl.DateTimeFormat("es-ES",{
+weekday:"long",
+day:"numeric",
+month:"long"
+}).format(now);
 }
 
 setInterval(updateClock,1000);
-updateClock();
 
 
-/* =========================
-   NAVEGACIÓN
-========================= */
+/* NAVEGACIÓN */
 
 document.querySelectorAll(".navButton").forEach(button=>{
 
-  button.addEventListener("click",()=>{
+button.addEventListener("click",()=>{
 
-    document.querySelectorAll(".screen")
-      .forEach(s=>s.classList.remove("active"));
+document.querySelectorAll(".screen")
+.forEach(s=>s.classList.remove("active"));
 
-    document.querySelectorAll(".navButton")
-      .forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".navButton")
+.forEach(b=>b.classList.remove("active"));
 
-    document.getElementById(button.dataset.screen)
-      .classList.add("active");
+document.getElementById(button.dataset.screen)
+.classList.add("active");
 
-    button.classList.add("active");
-  });
+button.classList.add("active");
+
+});
 
 });
 
 
-/* =========================
-   AJUSTES
-========================= */
+/* PANEL */
 
-document.getElementById("settingsButton").onclick =
-  ()=>settingsPanel.classList.add("open");
+document.getElementById("settingsButton").onclick=
+()=>settingsPanel.classList.add("open");
 
-document.getElementById("closeSettings").onclick =
-  ()=>settingsPanel.classList.remove("open");
+document.getElementById("closeSettings").onclick=
+()=>settingsPanel.classList.remove("open");
 
 
-showSeconds.onchange = ()=>{
-  clockSeconds.style.display =
-    showSeconds.checked ? "inline" : "none";
-  saveSettings();
+/* APARIENCIA */
+
+function applyAppearance(){
+
+clockSeconds.style.display=
+showSeconds.checked?"inline":"none";
+
+dateElement.style.display=
+showDate.checked?"block":"none";
+
+clockElement.style.fontFamily=fontFamily.value;
+clockElement.style.fontWeight=fontWeight.value;
+clockElement.style.transform=`scale(${clockSize.value/100})`;
+
+document.querySelectorAll(".bigTimer").forEach(x=>{
+x.style.fontFamily=fontFamily.value;
+x.style.fontWeight=fontWeight.value;
+});
+
+document.body.style.color=textColor.value;
+app.style.backgroundColor=backgroundColor.value;
+
+overlay.style.background=
+`rgba(0,0,0,${overlayOpacity.value/100})`;
+
+updateClock();
+}
+
+[
+showSeconds,
+showDate,
+timeFormat,
+fontFamily,
+fontWeight,
+clockSize,
+textColor,
+backgroundColor,
+overlayOpacity,
+alarmEnabled,
+vibrationEnabled,
+alarmSound,
+timerShowSeconds,
+focusShowSeconds
+].forEach(element=>{
+
+element.addEventListener("change",()=>{
+applyAppearance();
+saveSettings();
+updateTimerDisplay();
+updateFocusDisplay();
+});
+
+element.addEventListener("input",()=>{
+applyAppearance();
+saveSettings();
+});
+
+});
+
+
+/* FONDO */
+
+backgroundImage.onchange=event=>{
+
+const file=event.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=e=>{
+
+const image=e.target.result;
+
+app.style.backgroundImage=`url("${image}")`;
+
+try{
+localStorage.setItem("clockBackgroundImage",image);
+}catch(error){
+alert("La imagen es demasiado grande. Prueba con una imagen de menor tamaño.");
+}
+
 };
 
-showDate.onchange = ()=>{
-  dateElement.style.display =
-    showDate.checked ? "block" : "none";
-  saveSettings();
-};
+reader.readAsDataURL(file);
 
-timeFormat.onchange = ()=>{
-  updateClock();
-  saveSettings();
-};
-
-fontFamily.onchange = ()=>{
-  clockElement.style.fontFamily = fontFamily.value;
-  document.querySelectorAll(".bigTimer")
-    .forEach(x=>x.style.fontFamily=fontFamily.value);
-  saveSettings();
-};
-
-fontWeight.onchange = ()=>{
-  clockElement.style.fontWeight = fontWeight.value;
-  document.querySelectorAll(".bigTimer")
-    .forEach(x=>x.style.fontWeight=fontWeight.value);
-  saveSettings();
-};
-
-clockSize.oninput = ()=>{
-  clockElement.style.transform =
-    `scale(${clockSize.value/100})`;
-  saveSettings();
-};
-
-textColor.oninput = ()=>{
-  document.body.style.color=textColor.value;
-  saveSettings();
-};
-
-backgroundColor.oninput = ()=>{
-  app.style.backgroundColor=backgroundColor.value;
-  saveSettings();
-};
-
-overlayOpacity.oninput = ()=>{
-  overlay.style.background =
-    `rgba(0,0,0,${overlayOpacity.value/100})`;
-  saveSettings();
-};
-
-
-/* =========================
-   IMAGEN DE FONDO
-========================= */
-
-backgroundImage.onchange = event=>{
-
-  const file=event.target.files[0];
-  if(!file) return;
-
-  const reader=new FileReader();
-
-  reader.onload=e=>{
-
-    const image=e.target.result;
-
-    app.style.backgroundImage=`url("${image}")`;
-
-    try{
-      localStorage.setItem("clockBackgroundImage",image);
-    }catch(error){
-      alert("La imagen es demasiado grande para guardarla. Prueba con otra más pequeña.");
-    }
-  };
-
-  reader.readAsDataURL(file);
 };
 
 function removeBackgroundImage(){
-  app.style.backgroundImage="none";
-  localStorage.removeItem("clockBackgroundImage");
+app.style.backgroundImage="none";
+localStorage.removeItem("clockBackgroundImage");
 }
 
 
-/* =========================
-   GUARDAR AJUSTES
-========================= */
+/* AJUSTES */
 
 function getSettings(){
 
-  return{
-    showSeconds:showSeconds.checked,
-    showDate:showDate.checked,
-    timeFormat:timeFormat.value,
-    fontFamily:fontFamily.value,
-    fontWeight:fontWeight.value,
-    clockSize:clockSize.value,
-    textColor:textColor.value,
-    backgroundColor:backgroundColor.value,
-    overlayOpacity:overlayOpacity.value
-  };
+return{
+showSeconds:showSeconds.checked,
+showDate:showDate.checked,
+timeFormat:timeFormat.value,
+fontFamily:fontFamily.value,
+fontWeight:fontWeight.value,
+clockSize:clockSize.value,
+textColor:textColor.value,
+backgroundColor:backgroundColor.value,
+overlayOpacity:overlayOpacity.value,
+alarmEnabled:alarmEnabled.checked,
+vibrationEnabled:vibrationEnabled.checked,
+alarmSound:alarmSound.value,
+timerShowSeconds:timerShowSeconds.checked,
+focusShowSeconds:focusShowSeconds.checked
+};
+
 }
 
 function saveSettings(){
-  localStorage.setItem(
-    "myClockSettings",
-    JSON.stringify(getSettings())
-  );
+localStorage.setItem("myClockSettings",JSON.stringify(getSettings()));
 }
 
 function applySettings(data){
 
-  if(!data) return;
+if(!data)return;
 
-  showSeconds.checked=data.showSeconds ?? true;
-  showDate.checked=data.showDate ?? true;
-  timeFormat.value=data.timeFormat ?? "24";
-  fontFamily.value=data.fontFamily ?? fontFamily.value;
-  fontWeight.value=data.fontWeight ?? "300";
-  clockSize.value=data.clockSize ?? "100";
-  textColor.value=data.textColor ?? "#ffffff";
-  backgroundColor.value=data.backgroundColor ?? "#000000";
-  overlayOpacity.value=data.overlayOpacity ?? "0";
+showSeconds.checked=data.showSeconds??true;
+showDate.checked=data.showDate??true;
+timeFormat.value=data.timeFormat??"24";
+fontFamily.value=data.fontFamily??fontFamily.value;
+fontWeight.value=data.fontWeight??"300";
+clockSize.value=data.clockSize??"100";
+textColor.value=data.textColor??"#ffffff";
+backgroundColor.value=data.backgroundColor??"#000000";
+overlayOpacity.value=data.overlayOpacity??"0";
 
-  clockSeconds.style.display=
-    showSeconds.checked?"inline":"none";
+alarmEnabled.checked=data.alarmEnabled??true;
+vibrationEnabled.checked=data.vibrationEnabled??true;
+alarmSound.value=data.alarmSound??"soft";
 
-  dateElement.style.display=
-    showDate.checked?"block":"none";
+timerShowSeconds.checked=data.timerShowSeconds??true;
+focusShowSeconds.checked=data.focusShowSeconds??true;
 
-  clockElement.style.fontFamily=fontFamily.value;
-  clockElement.style.fontWeight=fontWeight.value;
-  clockElement.style.transform=
-    `scale(${clockSize.value/100})`;
-
-  document.querySelectorAll(".bigTimer").forEach(x=>{
-    x.style.fontFamily=fontFamily.value;
-    x.style.fontWeight=fontWeight.value;
-  });
-
-  document.body.style.color=textColor.value;
-  app.style.backgroundColor=backgroundColor.value;
-
-  overlay.style.background=
-    `rgba(0,0,0,${overlayOpacity.value/100})`;
-
-  updateClock();
+applyAppearance();
 }
 
 
-/* =========================
-   PRESETS
-========================= */
+/* CONFIGURACIONES */
 
 function savePreset(){
 
-  const name=
-    document.getElementById("presetName")
-    .value.trim();
+const name=document.getElementById("presetName").value.trim();
 
-  if(!name){
-    alert("Pon un nombre a la configuración.");
-    return;
-  }
+if(!name){
+alert("Pon un nombre a la configuración.");
+return;
+}
 
-  const presets=
-    JSON.parse(localStorage.getItem("clockPresets")||"{}");
+const presets=
+JSON.parse(localStorage.getItem("clockPresets")||"{}");
 
-  presets[name]=getSettings();
+presets[name]=getSettings();
 
-  localStorage.setItem(
-    "clockPresets",
-    JSON.stringify(presets)
-  );
+localStorage.setItem("clockPresets",JSON.stringify(presets));
 
-  document.getElementById("presetName").value="";
+document.getElementById("presetName").value="";
 
-  renderPresets();
+renderPresets();
+
 }
 
 function loadPreset(name){
 
-  const presets=
-    JSON.parse(localStorage.getItem("clockPresets")||"{}");
+const presets=
+JSON.parse(localStorage.getItem("clockPresets")||"{}");
 
-  applySettings(presets[name]);
-  saveSettings();
+applySettings(presets[name]);
+saveSettings();
+updateTimerDisplay();
+updateFocusDisplay();
+
 }
 
 function deletePreset(name){
 
-  const presets=
-    JSON.parse(localStorage.getItem("clockPresets")||"{}");
+const presets=
+JSON.parse(localStorage.getItem("clockPresets")||"{}");
 
-  delete presets[name];
+delete presets[name];
 
-  localStorage.setItem(
-    "clockPresets",
-    JSON.stringify(presets)
-  );
+localStorage.setItem("clockPresets",JSON.stringify(presets));
 
-  renderPresets();
+renderPresets();
+
 }
 
 function renderPresets(){
 
-  const container=
-    document.getElementById("presetList");
+const container=document.getElementById("presetList");
 
-  container.innerHTML="";
+container.innerHTML="";
 
-  const presets=
-    JSON.parse(localStorage.getItem("clockPresets")||"{}");
+const presets=
+JSON.parse(localStorage.getItem("clockPresets")||"{}");
 
-  Object.keys(presets).forEach(name=>{
+Object.keys(presets).forEach(name=>{
 
-    const div=document.createElement("div");
-    div.className="preset";
+const div=document.createElement("div");
+div.className="preset";
 
-    const button=document.createElement("button");
-    button.className="fullButton";
-    button.textContent=name;
-    button.onclick=()=>loadPreset(name);
+const button=document.createElement("button");
+button.className="fullButton";
+button.textContent=name;
+button.onclick=()=>loadPreset(name);
 
-    const del=document.createElement("button");
-    del.className="smallDanger";
-    del.textContent="×";
-    del.onclick=()=>deletePreset(name);
+const del=document.createElement("button");
+del.className="smallDanger";
+del.textContent="×";
+del.onclick=()=>deletePreset(name);
 
-    div.append(button,del);
-    container.appendChild(div);
-  });
+div.append(button,del);
+container.appendChild(div);
+
+});
+
 }
 
 
-/* =========================
-   TIMER
-========================= */
+/* FORMATO TIMER */
+
+function formatDuration(totalSeconds,showSecs=true){
+
+totalSeconds=Math.max(0,totalSeconds);
+
+const h=Math.floor(totalSeconds/3600);
+const m=Math.floor((totalSeconds%3600)/60);
+const s=totalSeconds%60;
+
+if(showSecs){
+
+if(h>0){
+return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+}
+
+return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+
+}
+
+/* SIN SEGUNDOS */
+
+const roundedMinutes=Math.ceil(totalSeconds/60);
+
+if(h>0){
+
+const displayHours=Math.floor(roundedMinutes/60);
+const displayMinutes=roundedMinutes%60;
+
+return `${String(displayHours).padStart(2,"0")}:${String(displayMinutes).padStart(2,"0")}`;
+
+}
+
+return `${roundedMinutes} min`;
+
+}
+
+
+/* TIMER */
 
 let timerTotal=300;
 let timerRemaining=300;
 let timerInterval=null;
 let timerRunning=false;
 
-function formatDuration(seconds){
-
-  const h=Math.floor(seconds/3600);
-  const m=Math.floor((seconds%3600)/60);
-  const s=seconds%60;
-
-  if(h>0){
-    return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-  }
-
-  return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-}
-
 function updateTimerDisplay(){
-  document.getElementById("timerDisplay")
-    .textContent=formatDuration(timerRemaining);
+
+const display=document.getElementById("timerDisplay");
+
+display.textContent=
+formatDuration(timerRemaining,timerShowSeconds.checked);
+
+display.classList.toggle("noSeconds",!timerShowSeconds.checked);
+
 }
 
 function toggleTimer(){
 
-  if(timerRunning){
+if(timerRunning){
 
-    clearInterval(timerInterval);
-    timerRunning=false;
-    document.getElementById("timerStart").textContent="Continuar";
-    return;
-  }
+clearInterval(timerInterval);
+timerRunning=false;
+document.getElementById("timerStart").textContent="Continuar";
+return;
 
-  if(timerRemaining<=0)
-    timerRemaining=timerTotal;
+}
 
-  timerRunning=true;
-  document.getElementById("timerStart").textContent="Pausar";
+if(timerRemaining<=0){
+timerRemaining=timerTotal;
+}
 
-  timerInterval=setInterval(()=>{
+timerRunning=true;
+document.getElementById("timerStart").textContent="Pausar";
 
-    timerRemaining--;
+timerInterval=setInterval(()=>{
 
-    updateTimerDisplay();
+timerRemaining=Math.max(0,timerRemaining-1);
 
-    if(timerRemaining<=0){
+updateTimerDisplay();
 
-      clearInterval(timerInterval);
-      timerRunning=false;
+if(timerRemaining<=0){
 
-      document.getElementById("timerStart").textContent="Iniciar";
+clearInterval(timerInterval);
+timerRunning=false;
 
-      finishAlert();
-    }
+document.getElementById("timerStart").textContent="Iniciar";
 
-  },1000);
+finishAlert();
+
+}
+
+},1000);
+
 }
 
 function resetTimer(){
 
-  clearInterval(timerInterval);
+clearInterval(timerInterval);
 
-  timerRunning=false;
-  timerRemaining=timerTotal;
+timerRunning=false;
+timerRemaining=timerTotal;
 
-  document.getElementById("timerStart").textContent="Iniciar";
+document.getElementById("timerStart").textContent="Iniciar";
 
-  updateTimerDisplay();
+updateTimerDisplay();
+
 }
 
 function openTimerSetup(){
-  document.getElementById("timerModal").classList.add("open");
+document.getElementById("timerModal").classList.add("open");
 }
 
 function closeTimerSetup(){
-  document.getElementById("timerModal").classList.remove("open");
+document.getElementById("timerModal").classList.remove("open");
 }
 
 function setTimer(){
 
-  const h=
-    parseInt(document.getElementById("timerHours").value)||0;
+const h=parseInt(document.getElementById("timerHours").value)||0;
+const m=parseInt(document.getElementById("timerMinutes").value)||0;
+const s=parseInt(document.getElementById("timerSecondsInput").value)||0;
 
-  const m=
-    parseInt(document.getElementById("timerMinutes").value)||0;
+timerTotal=(h*3600)+(m*60)+s;
 
-  const s=
-    parseInt(document.getElementById("timerSecondsInput").value)||0;
+if(timerTotal<=0){
+alert("Selecciona un tiempo.");
+return;
+}
 
-  timerTotal=(h*3600)+(m*60)+s;
+timerRemaining=timerTotal;
 
-  if(timerTotal<=0){
-    alert("Selecciona un tiempo.");
-    return;
-  }
+saveSettings();
+resetTimer();
+closeTimerSetup();
 
-  timerRemaining=timerTotal;
-
-  resetTimer();
-  closeTimerSetup();
 }
 
 
-/* =========================
-   FOCUS
-========================= */
+/* FOCUS */
 
 let focusConfig={
-  focus:25,
-  break:5,
-  longBreak:15,
-  sessions:4,
-  auto:false
+focus:25,
+break:5,
+longBreak:10,
+sessions:4,
+auto:false
 };
 
 let focusPhase="focus";
@@ -1179,272 +1167,358 @@ let focusRemaining=25*60;
 let focusInterval=null;
 let focusRunning=false;
 
-function focusPreset(focus,rest){
+function focusPreset(focus,rest,longRest){
 
-  document.getElementById("focusMinutes").value=focus;
-  document.getElementById("breakMinutes").value=rest;
+document.getElementById("focusMinutes").value=focus;
+document.getElementById("breakMinutes").value=rest;
+document.getElementById("longBreakMinutes").value=longRest;
+document.getElementById("focusSessions").value=4;
+
 }
 
 function openFocusSetup(){
-  document.getElementById("focusModal").classList.add("open");
+document.getElementById("focusModal").classList.add("open");
 }
 
 function closeFocusSetup(){
-  document.getElementById("focusModal").classList.remove("open");
+document.getElementById("focusModal").classList.remove("open");
 }
 
 function applyFocusSettings(){
 
-  focusConfig={
-    focus:parseInt(document.getElementById("focusMinutes").value)||25,
-    break:parseInt(document.getElementById("breakMinutes").value)||5,
-    longBreak:parseInt(document.getElementById("longBreakMinutes").value)||15,
-    sessions:parseInt(document.getElementById("focusSessions").value)||4,
-    auto:document.getElementById("autoFocus").checked
-  };
+focusConfig={
+focus:parseInt(document.getElementById("focusMinutes").value)||25,
+break:parseInt(document.getElementById("breakMinutes").value)||5,
+longBreak:parseInt(document.getElementById("longBreakMinutes").value)||10,
+sessions:parseInt(document.getElementById("focusSessions").value)||4,
+auto:document.getElementById("autoFocus").checked
+};
 
-  localStorage.setItem(
-    "focusConfig",
-    JSON.stringify(focusConfig)
-  );
+localStorage.setItem("focusConfig",JSON.stringify(focusConfig));
 
-  resetFocus();
-  closeFocusSetup();
+saveSettings();
+resetFocus();
+closeFocusSetup();
+
 }
 
 function updateFocusDisplay(){
 
-  document.getElementById("focusDisplay")
-    .textContent=formatDuration(focusRemaining);
+const display=document.getElementById("focusDisplay");
 
-  let title;
+display.textContent=
+formatDuration(focusRemaining,focusShowSeconds.checked);
 
-  if(focusPhase==="focus"){
-    title=`Concentración · Sesión ${currentSession}/${focusConfig.sessions}`;
-  }
+display.classList.toggle("noSeconds",!focusShowSeconds.checked);
 
-  else if(focusPhase==="break"){
-    title="Descanso";
-  }
+let title;
 
-  else{
-    title="Descanso largo";
-  }
+if(focusPhase==="focus"){
+title=`Concentración · Sesión ${currentSession}/${focusConfig.sessions}`;
+}
+else if(focusPhase==="break"){
+title=`Descanso · Sesión ${currentSession}/${focusConfig.sessions}`;
+}
+else{
+title="Descanso largo";
+}
 
-  document.getElementById("focusTitle").textContent=title;
+document.getElementById("focusTitle").textContent=title;
+
 }
 
 function toggleFocus(){
 
-  if(focusRunning){
+if(focusRunning){
 
-    clearInterval(focusInterval);
-    focusRunning=false;
+clearInterval(focusInterval);
+focusRunning=false;
 
-    document.getElementById("focusStart").textContent="Continuar";
+document.getElementById("focusStart").textContent="Continuar";
 
-    return;
-  }
+return;
 
-  focusRunning=true;
+}
 
-  document.getElementById("focusStart").textContent="Pausar";
+focusRunning=true;
 
-  focusInterval=setInterval(()=>{
+document.getElementById("focusStart").textContent="Pausar";
 
-    focusRemaining--;
+focusInterval=setInterval(()=>{
 
-    updateFocusDisplay();
+focusRemaining=Math.max(0,focusRemaining-1);
 
-    if(focusRemaining<=0){
+updateFocusDisplay();
 
-      clearInterval(focusInterval);
-      focusRunning=false;
+if(focusRemaining<=0){
 
-      finishAlert();
-      nextFocusPhase();
+clearInterval(focusInterval);
+focusRunning=false;
 
-      if(focusConfig.auto){
-        toggleFocus();
-      }
-    }
+finishAlert();
+nextFocusPhase();
 
-  },1000);
+if(focusConfig.auto){
+setTimeout(toggleFocus,500);
+}
+
+}
+
+},1000);
+
 }
 
 function nextFocusPhase(){
 
-  if(focusPhase==="focus"){
+if(focusPhase==="focus"){
 
-    if(currentSession>=focusConfig.sessions){
+if(currentSession>=focusConfig.sessions){
 
-      focusPhase="long";
-      focusRemaining=focusConfig.longBreak*60;
+focusPhase="long";
+focusRemaining=focusConfig.longBreak*60;
 
-    }else{
+}else{
 
-      focusPhase="break";
-      focusRemaining=focusConfig.break*60;
-    }
+focusPhase="break";
+focusRemaining=focusConfig.break*60;
 
-  }else{
+}
 
-    if(focusPhase==="break"){
-      currentSession++;
-    }else{
-      currentSession=1;
-    }
+}else{
 
-    focusPhase="focus";
-    focusRemaining=focusConfig.focus*60;
-  }
+if(focusPhase==="break"){
+currentSession++;
+}else{
+currentSession=1;
+}
 
-  document.getElementById("focusStart").textContent="Iniciar";
+focusPhase="focus";
+focusRemaining=focusConfig.focus*60;
 
-  updateFocusDisplay();
+}
+
+document.getElementById("focusStart").textContent="Iniciar";
+
+updateFocusDisplay();
+
 }
 
 function resetFocus(){
 
-  clearInterval(focusInterval);
+clearInterval(focusInterval);
 
-  focusRunning=false;
-  focusPhase="focus";
-  currentSession=1;
-  focusRemaining=focusConfig.focus*60;
+focusRunning=false;
+focusPhase="focus";
+currentSession=1;
+focusRemaining=focusConfig.focus*60;
 
-  document.getElementById("focusStart").textContent="Iniciar";
+document.getElementById("focusStart").textContent="Iniciar";
 
-  updateFocusDisplay();
+updateFocusDisplay();
+
 }
 
 
-/* =========================
-   AVISO
-========================= */
+/* SONIDOS */
+
+let audioContext=null;
+
+function getAudioContext(){
+
+if(!audioContext){
+
+audioContext=
+new (window.AudioContext||window.webkitAudioContext)();
+
+}
+
+return audioContext;
+
+}
+
+function tone(frequency,start,duration,volume=.15,type="sine"){
+
+const ctx=getAudioContext();
+
+const oscillator=ctx.createOscillator();
+const gain=ctx.createGain();
+
+oscillator.type=type;
+oscillator.frequency.value=frequency;
+
+gain.gain.setValueAtTime(0,ctx.currentTime+start);
+gain.gain.linearRampToValueAtTime(volume,ctx.currentTime+start+.02);
+gain.gain.linearRampToValueAtTime(0,ctx.currentTime+start+duration);
+
+oscillator.connect(gain);
+gain.connect(ctx.destination);
+
+oscillator.start(ctx.currentTime+start);
+oscillator.stop(ctx.currentTime+start+duration+.03);
+
+}
+
+function playSelectedSound(){
+
+if(!alarmEnabled.checked)return;
+
+const sound=alarmSound.value;
+
+if(sound==="soft"){
+
+tone(520,0,.55,.11,"sine");
+tone(660,.15,.6,.09,"sine");
+
+}
+
+else if(sound==="digital"){
+
+tone(880,0,.16,.12,"square");
+tone(1100,.2,.16,.12,"square");
+tone(880,.4,.16,.12,"square");
+
+}
+
+else if(sound==="bell"){
+
+tone(784,0,.8,.13,"sine");
+tone(1175,0,.65,.06,"sine");
+tone(1568,.02,.5,.035,"sine");
+
+}
+
+else if(sound==="beep"){
+
+tone(750,0,.45,.14,"sine");
+
+}
+
+else if(sound==="double"){
+
+tone(750,0,.22,.14,"sine");
+tone(750,.35,.22,.14,"sine");
+
+}
+
+}
+
+function testAlarm(){
+playSelectedSound();
+}
 
 function finishAlert(){
 
-  if(navigator.vibrate){
-    navigator.vibrate([200,100,200]);
-  }
+playSelectedSound();
 
-  try{
+if(vibrationEnabled.checked && navigator.vibrate){
+navigator.vibrate([250,120,250]);
+}
 
-    const audioContext=
-      new (window.AudioContext||window.webkitAudioContext)();
-
-    const oscillator=audioContext.createOscillator();
-    const gain=audioContext.createGain();
-
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
-
-    oscillator.frequency.value=700;
-    gain.gain.value=.15;
-
-    oscillator.start();
-
-    setTimeout(()=>{
-      oscillator.stop();
-      audioContext.close();
-    },500);
-
-  }catch(e){}
 }
 
 
-/* =========================
-   PANTALLA
-========================= */
+/* MODO LIMPIO */
 
 function enterCleanMode(){
 
-  document.body.classList.add("cleanMode");
-  settingsPanel.classList.remove("open");
+document.body.classList.add("cleanMode");
+settingsPanel.classList.remove("open");
+
 }
 
 document.getElementById("exitClean").onclick=()=>{
-  document.body.classList.remove("cleanMode");
+document.body.classList.remove("cleanMode");
 };
 
-async function requestFullscreen(){
 
-  settingsPanel.classList.remove("open");
-
-  try{
-
-    if(document.documentElement.requestFullscreen){
-      await document.documentElement.requestFullscreen();
-    }
-
-  }catch(e){}
-}
+/* PANTALLA ACTIVA */
 
 let wakeLock=null;
 
 async function keepAwake(){
 
-  try{
+try{
 
-    if("wakeLock" in navigator){
+if("wakeLock" in navigator){
 
-      wakeLock=await navigator.wakeLock.request("screen");
+wakeLock=await navigator.wakeLock.request("screen");
 
-      alert("Pantalla activa mientras mantengas abierta la aplicación.");
+alert("Pantalla activa mientras My Clock permanezca abierta.");
 
-    }else{
+}else{
 
-      alert("Este navegador no permite controlar esta función.");
+alert("Tu navegador no permite activar esta función.");
 
-    }
+}
 
-  }catch(e){
+}catch(e){
 
-    alert("No se ha podido activar en este dispositivo.");
-  }
+alert("No se ha podido activar en este dispositivo.");
+
+}
+
 }
 
 
-/* =========================
-   CARGA INICIAL
-========================= */
+/* RECUPERAR WAKE LOCK */
+
+document.addEventListener("visibilitychange",async()=>{
+
+if(
+wakeLock &&
+document.visibilityState==="visible" &&
+"wakeLock" in navigator
+){
+
+try{
+wakeLock=await navigator.wakeLock.request("screen");
+}catch(e){}
+
+}
+
+});
+
+
+/* INICIO */
 
 function loadEverything(){
 
-  const saved=
-    JSON.parse(localStorage.getItem("myClockSettings")||"null");
+const saved=
+JSON.parse(localStorage.getItem("myClockSettings")||"null");
 
-  if(saved){
-    applySettings(saved);
-  }
+if(saved){
+applySettings(saved);
+}else{
+applyAppearance();
+}
 
-  const savedImage=
-    localStorage.getItem("clockBackgroundImage");
+const savedImage=
+localStorage.getItem("clockBackgroundImage");
 
-  if(savedImage){
-    app.style.backgroundImage=`url("${savedImage}")`;
-  }
+if(savedImage){
+app.style.backgroundImage=`url("${savedImage}")`;
+}
 
-  const savedFocus=
-    JSON.parse(localStorage.getItem("focusConfig")||"null");
+const savedFocus=
+JSON.parse(localStorage.getItem("focusConfig")||"null");
 
-  if(savedFocus){
+if(savedFocus){
 
-    focusConfig=savedFocus;
+focusConfig=savedFocus;
 
-    document.getElementById("focusMinutes").value=focusConfig.focus;
-    document.getElementById("breakMinutes").value=focusConfig.break;
-    document.getElementById("longBreakMinutes").value=focusConfig.longBreak;
-    document.getElementById("focusSessions").value=focusConfig.sessions;
-    document.getElementById("autoFocus").checked=focusConfig.auto;
+document.getElementById("focusMinutes").value=focusConfig.focus;
+document.getElementById("breakMinutes").value=focusConfig.break;
+document.getElementById("longBreakMinutes").value=focusConfig.longBreak;
+document.getElementById("focusSessions").value=focusConfig.sessions;
+document.getElementById("autoFocus").checked=focusConfig.auto;
 
-    resetFocus();
-  }
+}
 
-  renderPresets();
-  updateTimerDisplay();
-  updateFocusDisplay();
+renderPresets();
+updateClock();
+updateTimerDisplay();
+resetFocus();
+
 }
 
 loadEverything();
